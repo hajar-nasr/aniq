@@ -1,8 +1,8 @@
 "use client";
 import { createContext, useState, Dispatch, SetStateAction } from "react";
 // data
-import productImages from "@/app/product/product-images.json";
-import productsJson from "@/app/product/products.json";
+import productImages from "@/app/data/product-images.json";
+import productsJson from "@/app/data/products.json";
 // types
 import { Product, ProductImage } from "@/app/lib/types";
 

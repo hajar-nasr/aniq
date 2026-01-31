@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <ProductContextProvider>
-          <div className="px-12 py-10 xl:max-w-[90%] 5xl:max-w-[50%]! m-auto">
+          <div className="px-4 py-3 md:px-5 md:py-4 lg:px-12 lg:py-10 xl:max-w-[80%] 5xl:max-w-[50%]! m-auto">
             <MainHeader />
             {children}
           </div>

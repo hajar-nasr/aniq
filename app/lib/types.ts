@@ -13,3 +13,19 @@ export interface Product {
   created_at: string;
   images?: Record<string, ProductImage[]>;
 }
+
+export interface ProductDetailsType {
+  product_id: string;
+  name: string;
+  category: string;
+  collection: string;
+  created_at: string;
+  description: string;
+  images: ProductImage[];
+  availableColors: string[];
+  info: {
+    title: string;
+    description: string[];
+    product_id: string;
+  }[];
+}

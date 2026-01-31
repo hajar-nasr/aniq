@@ -1,0 +1,118 @@
+[
+    {
+        "id": "sustainability",
+        "label": "Sustainability",
+        "title": "Eco-Friendly Choice",
+        "description": "With our sustainable approach, we curate clothing that makes a statement of care—care for the planet, and for the art of fashion.\n\nFrom recycled fibers to mindful dyeing, we prioritize processes that reduce waste without compromising design, championing cleaner production and responsible sourcing.",
+        "image": "/images/sustainability.webp",
+        "features": [
+            {
+                "icon": "/images/icons/recycle.png",
+                "title": "Recycled Materials",
+                "description": "Crafted using responsibly sourced and recycled fabrics."
+            },
+            {
+                "icon": "/images/icons/plant.png",
+                "title": "Carbon Neutral",
+                "description": "Production processes designed to minimize carbon footprint."
+            },
+            {
+                "icon": "/images/icons/bucket.png",
+                "title": "Low Impact Dye",
+                "description": "Dyes that reduce environmental harm and water pollution."
+            },
+            {
+                "icon": "/images/icons/water.png",
+                "title": "Water Conservation",
+                "description": "Efficient water usage throughout the manufacturing process."
+            }
+        ]
+    },
+    {
+        "id": "comfort",
+        "label": "Comfort",
+        "title": "Designed for Everyday Comfort",
+        "description": "Our garments are designed to feel effortless on your body, combining soft textures with thoughtful tailoring.\n\nThoughtful details like ergonomic cuts and breathable weaves ensure day-long ease, so you feel as good as you look.",
+        "image": "/images/comfort.webp",
+        "features": [
+            {
+                "icon": "/images/icons/recycle.png",
+                "title": "Soft Fabrics",
+                "description": "Premium materials that feel gentle and breathable on skin."
+            },
+            {
+                "icon": "/images/icons/plant.png",
+                "title": "Ease of Movement",
+                "description": "Cuts and fits that move naturally with your body."
+            },
+            {
+                "icon": "/images/icons/bucket.png",
+                "title": "All-Season Wear",
+                "description": "Comfortable across changing temperatures and climates."
+            },
+            {
+                "icon": "/images/icons/water.png",
+                "title": "Skin-Friendly",
+                "description": "Non-irritating fabrics suitable for sensitive skin."
+            }
+        ]
+    },
+    {
+        "id": "durability",
+        "label": "Durability",
+        "title": "Built to Last",
+        "description": "Each piece is made with long-term wear in mind, ensuring strength, resilience, and timeless appeal.\n\nQuality finishes and resilient fabrics stand up to daily wear, maintaining their shape and character over time.",
+        "image": "/images/durability.webp",
+        "features": [
+            {
+                "icon": "/images/icons/recycle.png",
+                "title": "High-Quality Stitching",
+                "description": "Reinforced seams for extended garment life."
+            },
+            {
+                "icon": "/images/icons/plant.png",
+                "title": "Premium Materials",
+                "description": "Fabrics selected for strength and resistance to wear."
+            },
+            {
+                "icon": "/images/icons/bucket.png",
+                "title": "Fade Resistant",
+                "description": "Colors that hold up through repeated washes."
+            },
+            {
+                "icon": "/images/icons/water.png",
+                "title": "Crafted Construction",
+                "description": "Attention to detail at every stage of production."
+            }
+        ]
+    },
+    {
+        "id": "versatility",
+        "label": "Versatility",
+        "title": "Style That Adapts",
+        "description": "Our designs transition seamlessly between occasions, making every piece a flexible wardrobe essential.\n\nAdaptable silhouettes mix effortlessly across your wardrobe, simplifying styling for casual days, work settings, and evenings out.",
+        "image": "/images/versatility.webp",
+        "features": [
+            {
+                "icon": "/images/icons/recycle.png",
+                "title": "Day-to-Night Wear",
+                "description": "Looks that adapt easily from casual to refined settings."
+            },
+            {
+                "icon": "/images/icons/plant.png",
+                "title": "Easy to Style",
+                "description": "Pairs well with a wide range of outfits and accessories."
+            },
+            {
+                "icon": "/images/icons/bucket.png",
+                "title": "Work & Casual Ready",
+                "description": "Balanced designs suitable for professional and relaxed looks."
+            },
+            {
+                "icon": "/images/icons/water.png",
+                "title": "Year-Round Use",
+                "description": "Designed to stay relevant across seasons and trends."
+            }
+        ]
+    }
+]
