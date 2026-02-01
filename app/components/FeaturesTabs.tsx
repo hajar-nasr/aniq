@@ -49,19 +49,19 @@ const Tabs = ({ tabs }: TapsProps) => {
                 setCurrentTab(tabs[index]);
               }}
               label={label}
-              className={`border-b-2 pb-2 ${isActive ? "text-[#3864C8] border-b-[#3864C8]" : "text-(--secondary-color) border-b-transparent"} cursor-pointer`}
+              className={`border-b-2 pb-2 ${isActive ? "text-(--tertiary-color) border-b-[--tertiary-color]" : "text-(--secondary-color) border-b-transparent"} cursor-pointer`}
             />
           );
         })}
       </div>
 
-      <div className="flex gap-3 md:gap-8 flex-col md:flex-row pt-4">
+      <div className="flex gap-2 md:gap-6 lg:gap-10 flex-col-reverse lg:flex-row w-full">
         <Image
           src={currentTab.image}
           alt={currentTab.label}
           width={400}
           height={400}
-          className="rounded-lg w-full md:w-120"
+          className="rounded-lg w-full"
         />
 
         <div>

@@ -21,7 +21,7 @@ const ProductDetailsPage = () => {
       </section>
 
       <FeaturesTabs />
-      <MoreProducts productId={product.product_id} />
+      <MoreProducts productId={product.product_id} title="In this Collection" />
     </div>
   );
 };

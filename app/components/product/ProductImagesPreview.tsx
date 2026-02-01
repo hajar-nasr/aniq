@@ -17,6 +17,8 @@ const ProductImagesPreview = ({ images }: { images: ProductImage[] }) => {
           src={currentImage.image_url}
           className="object-cover object-center rounded-xl"
           fill
+          priority
+          quality={70}
         />
       </div>
 

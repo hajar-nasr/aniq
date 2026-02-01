@@ -25,7 +25,7 @@ const ProductItem = ({ product }: Props) => {
           <Image
             src={product.images[currentColor][0].image_url}
             quality={70}
-            className="object-cover max-h-75 min-h-75 w-full 5xl:min-h-100 mb-1"
+            className="object-cover max-h-75 min-h-75 w-full 5xl:min-h-100 mb-1 rounded-sm"
             width={300}
             height={300}
             alt=""
