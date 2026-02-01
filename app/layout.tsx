@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import MainHeader from "./components/layout/MainHeader";
-import ProductContextProvider from "./context/ProductContext";
 import MainFooter from "./components/layout/MainFooter";
 
 const inter = Inter({
@@ -23,13 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <ProductContextProvider>
-          <div className="px-4 py-3 md:px-5 md:py-4 lg:px-12 lg:py-10 xl:max-w-[80%] 5xl:max-w-[50%]! m-auto">
-            <MainHeader />
-            {children}
-            <MainFooter />
-          </div>
-        </ProductContextProvider>
+        <div className="px-4 py-3 md:px-5 md:py-4 lg:px-12 lg:py-10 xl:max-w-[80%] 5xl:max-w-[50%]! m-auto">
+          <MainHeader />
+          {children}
+          <MainFooter />
+        </div>
       </body>
     </html>
   );

@@ -1,14 +1,15 @@
 "use client";
 
-import { useContext, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
+import useProductReducer from "@/app/reducers/product/reducer";
+// components
 import Collapsable from "../Collapsable";
 import ColorsIcons from "../product/ColorsIcons";
-import { ProductContext } from "@/app/context/ProductContext";
 
 const CATEGORIES = ["Women", "Men", "Unisex"];
 
 const FiltersColumn = () => {
-  const { allProductsColors, setProducts } = useContext(ProductContext) || {};
+  const [state] = useProductReducer();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
@@ -38,9 +39,9 @@ const FiltersColumn = () => {
         })}
       </Collapsable>
 
-      {allProductsColors && (
+      {state.allProductsColors && (
         <Collapsable title="Colors">
-          <ColorsIcons colors={allProductsColors} onClick={() => {}} />
+          <ColorsIcons colors={state.allProductsColors} onClick={() => {}} />
         </Collapsable>
       )}
     </aside>

@@ -1,18 +1,10 @@
 "use client";
-import { createContext, useState, Dispatch, SetStateAction } from "react";
+
 // data
 import productImages from "@/app/data/product-images.json";
 import productsJson from "@/app/data/products.json";
 // types
 import { Product, ProductImage } from "@/app/lib/types";
-
-export type ProductContextType = {
-  allProductsColors: string[];
-  products: Product[];
-  setProducts: Dispatch<SetStateAction<Product[]>>;
-};
-
-export const ProductContext = createContext<ProductContextType | null>(null);
 
 const groupImagesByColor = (images: ProductImage[]) => {
   return images.reduce(
@@ -44,29 +36,14 @@ const getInitialProducts = () => {
   }, []);
 };
 
-const ProductContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
-  const initialProducts: Product[] = getInitialProducts();
+export const getInitialState = () => {
+  const products: Product[] = getInitialProducts();
   const allProductsColors = [
     ...new Set(productImages.map((image) => image.color)),
   ];
 
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-
-  return (
-    <ProductContext.Provider
-      value={{
-        allProductsColors,
-        products,
-        setProducts,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
-  );
+  return {
+    products,
+    allProductsColors,
+  };
 };
-
-export default ProductContextProvider;
