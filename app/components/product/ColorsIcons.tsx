@@ -1,20 +1,23 @@
+import { clsx } from "clsx";
 import Button from "../core/Button";
 
-const ColorsIcons = ({
-  colors,
-  colorClassName = "min-w-5 min-h-5",
-  onClick,
-}: {
+type Props = {
   colors: string[];
-  colorClassName?: string;
   onClick: (color: string) => void;
-}) => {
+};
+
+const ColorsIcons = ({ colors, onClick }: Props) => {
   return (
     <div className="flex gap-3 flex-wrap">
       {colors.map((color) => {
         return (
           <Button
-            className={`${colorClassName} rounded-full cursor-pointer border ${color === "white" ? "border-gray-300" : "border-transparent"}`}
+            className={clsx(
+              "min-w-5 min-h-5 rounded-full cursor-pointer border border-transparent",
+              {
+                "border-gray-300!": color === "white",
+              },
+            )}
             key={color}
             style={{ backgroundColor: color }}
             aria-label={color}

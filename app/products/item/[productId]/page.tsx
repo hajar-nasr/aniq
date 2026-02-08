@@ -1,4 +1,5 @@
 "use client";
+
 import { useParams } from "next/navigation";
 import getProduct from "@/app/apis/get-product";
 import ProductDetails from "@/app/components/product/ProductDetails";

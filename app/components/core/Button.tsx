@@ -7,7 +7,11 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({ type = "button", ...props }: Props) => {
   return (
-    <button type={type} {...props}>
+    <button
+      type={type}
+      {...props}
+      className={`cursor-pointer ${props.className}`}
+    >
       {props.label}
       {props.children}
     </button>

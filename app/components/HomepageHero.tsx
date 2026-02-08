@@ -14,7 +14,7 @@ const HomepageHero = () => {
         </p>
 
         <Link
-          href="/product/list"
+          href="/products/list"
           className="rounded-sm bg-blue-800 text-white py-3 px-8 inline-block mt-4 md:mt-10 font-semibold hover:bg-blue-900 min-w-50 text-center"
         >
           Shop now

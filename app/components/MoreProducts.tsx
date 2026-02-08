@@ -28,7 +28,7 @@ const MoreProducts = ({
       </ul>
 
       <Link
-        href="/product/list"
+        href="/products/list"
         className="text-right font-semibold block pt-3 hover:underline text-(--secondary-color)"
       >
         See All Products

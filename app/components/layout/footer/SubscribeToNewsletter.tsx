@@ -5,6 +5,8 @@ const SubscribeToNewsletter = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!inputRef?.current?.value) return;
+
     alert("Subscribed successfully");
 
     if (inputRef?.current) {

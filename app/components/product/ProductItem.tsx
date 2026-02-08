@@ -19,7 +19,7 @@ const ProductItem = ({ product }: Props) => {
     <li className="space-y-1">
       {product.images && (
         <Link
-          href={`/product/item/${product.product_id}`}
+          href={`/products/item/${product.product_id}`}
           aria-label="Go to products details"
         >
           <Image

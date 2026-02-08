@@ -29,3 +29,13 @@ export interface ProductDetailsType {
     product_id: string;
   }[];
 }
+
+export interface CartItem {
+  product_id: string;
+  name: string;
+  color: string;
+  image_url: string;
+  description: string;
+  quantity: number;
+  size: "XS" | "S" | "M" | "L" | "XL";
+}

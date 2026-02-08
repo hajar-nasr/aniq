@@ -1,11 +1,87 @@
-import { ProductDetailsType } from "@/app/lib/types";
+"use client";
+
+import { useContext, useMemo, useState } from "react";
+import { clsx } from "clsx";
+import { CartContext } from "@/app/reducers/cart/context";
+import { CartItem, ProductDetailsType } from "@/app/lib/types";
 import Collapsable from "../Collapsable";
 import Button from "../core/Button";
-import ColorsIcons from "./ColorsIcons";
+import ProductQuantityButton from "../core/ProductQuantityButton";
+import { CartActionTypes } from "@/app/reducers/cart/actions";
+import { CheckMark } from "../icons";
 
 const SIZES = ["XS", "S", "M", "L", "XL"];
 
 const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
+  const { dispatch, state } = useContext(CartContext) || {};
+
+  const initialItem = {
+    quantity: 1,
+    description: product.description,
+    product_id: product.product_id,
+    color: product.availableColors[0],
+    name: product.name,
+  } as CartItem;
+
+  // check if the item exists in cart
+  const itemInCart = useMemo(() => {
+    return state?.items.find((item) => item.product_id === product.product_id);
+  }, [state?.items, product.product_id]);
+
+  const [cartItem, setCartItem] = useState(itemInCart || initialItem);
+
+  const updateState = (key: string, value: string | number) => {
+    setCartItem((prev) => {
+      return {
+        ...prev,
+        [key]: value,
+      };
+    });
+  };
+
+  const adjustQuantity = (adjustBy: number, product: CartItem) => {
+    if (adjustBy < 0 && product.quantity <= 1) return;
+
+    setCartItem(({ quantity, ...rest }) => {
+      return {
+        ...rest,
+        quantity: quantity + adjustBy,
+      };
+    });
+  };
+
+  const isAddToCartDisabled =
+    !cartItem.size || !cartItem.quantity || !cartItem.color;
+
+  const addToCart = () => {
+    // find the image based on the selected color
+    const imageUrl = product.images.find(
+      (img) => img.color === cartItem.color,
+    )?.image_url;
+
+    // if item exists in cart, update it with the latest inputs from user
+    if (itemInCart) {
+      dispatch?.({
+        type: CartActionTypes.UPDATE_CART_ITEM,
+        productId: itemInCart.product_id,
+        updatedFields: {
+          ...cartItem,
+          image_url: imageUrl || product.images[0].image_url,
+        },
+      });
+      return;
+    }
+
+    // add item to cart
+    dispatch?.({
+      type: CartActionTypes.ADD_TO_CART,
+      cartItem: {
+        ...cartItem,
+        image_url: imageUrl || product.images[0].image_url,
+      },
+    });
+  };
+
   return (
     <section className="space-y-2 lg:space-y-4">
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-(--main-color)">
@@ -16,22 +92,44 @@ const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
       </p>
 
       <SelectionSection title="Available Colors">
-        <ColorsIcons
-          colors={product.availableColors}
-          onClick={() => {}}
-          colorClassName="min-h-6 min-w-6 max-w-fit"
-        />
+        <div className="flex gap-2">
+          {product.availableColors.map((color) => {
+            const selected = color === cartItem.color;
+
+            return (
+              <Button
+                className={clsx(
+                  "relative min-h-8 min-w-8 rounded-full cursor-pointer border border-transparent ",
+                  {
+                    "border-gray-400!": color === "white",
+                  },
+                )}
+                key={color}
+                style={{ backgroundColor: color }}
+                aria-label={color}
+                onClick={() => updateState("color", color)}
+              >
+                {selected && <CheckMark className="bg-black/8 rounded-full" />}
+              </Button>
+            );
+          })}
+        </div>
       </SelectionSection>
 
       <SelectionSection title="Available Sizes">
         <ul className="flex items-center gap-3">
           {SIZES.map((size) => {
+            const selected = size === cartItem.size;
             return (
               <li
                 key={size}
-                className="bg-white rounded-sm border text-base border-gray-200 w-10 h-10 flex justify-center items-center font-medium text-gray-600 hover:bg-gray-50 cursor-pointer"
+                className={`${selected ? "bg-gray-200" : "bg-white hover:bg-gray-50"}  rounded-sm border text-base border-gray-200 w-10 h-10 flex justify-center items-center font-medium text-gray-600`}
               >
-                {size}
+                <Button
+                  label={size}
+                  onClick={() => updateState("size", size)}
+                  className="w-full h-full"
+                />
               </li>
             );
           })}
@@ -39,26 +137,18 @@ const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
       </SelectionSection>
 
       <SelectionSection title="Quantity">
-        <div className="flex gap-4 bg-gray-50 border rounded-sm border-gray-200 max-w-fit *:w-9 *:h-9 *:flex *:items-center *:justify-center font-medium text-gray-700">
-          <Button
-            aria-label="Increase quantity by 1"
-            className="cursor-pointer"
-            label="+"
-          />
-          <input value="1" type="text" className="text-center" />
-
-          <Button
-            aria-label="Decrease quantity by 1"
-            className="cursor-pointer"
-            label="-"
-          />
-        </div>
+        <ProductQuantityButton
+          adjustQuantity={adjustQuantity}
+          product={cartItem}
+        />
       </SelectionSection>
 
       <Button
-        className="rounded-xl bg-blue-800 text-white font-medium text-base lg:text-lg w-full px-4 py-2 cursor-pointer hover:bg-blue-700"
+        className={`${isAddToCartDisabled ? "opacity-70" : ""} rounded-xl bg-blue-800 text-white font-medium text-base lg:text-lg w-full px-4 py-2 cursor-pointer hover:bg-blue-700`}
         type="button"
-        label="Add to Cart"
+        label={Boolean(itemInCart) ? "Update Product" : "Add to Cart"}
+        onClick={addToCart}
+        disabled={isAddToCartDisabled}
       />
 
       <MoreDetailsSection details={product.info} />

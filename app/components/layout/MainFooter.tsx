@@ -9,7 +9,7 @@ const MainFooter = () => {
   const currentYear = date.getFullYear();
 
   return (
-    <footer className="pt-20 lg:pt-30 pb-10 space-y-6">
+    <footer className="pt-20 lg:pt-30 pb-10 space-y-6 mt-auto">
       <SubscribeToNewsletter />
       <CategoriesLists />
 
