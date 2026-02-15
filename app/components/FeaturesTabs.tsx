@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import tabs from "@/app/data/features-tabs.json";
 import Image from "next/image";

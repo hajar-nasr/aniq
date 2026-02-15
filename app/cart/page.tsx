@@ -8,6 +8,7 @@ import { CartContext } from "../reducers/cart/context";
 import { useContext } from "react";
 import { CartActionTypes } from "../reducers/cart/actions";
 import { CartItem } from "../lib/types";
+import CheckoutForm from "../components/cart/CheckoutForm";
 
 const CartPage = () => {
   const { state } = useContext(CartContext) || {};
@@ -122,9 +123,19 @@ const CartItems = () => {
                   />
                 </div>
 
-                <p>
-                  <span className="font-semibold">$22.5</span>
-                  <small className="line-through">$25</small>
+                <p className="font-semibold text-md">
+                  ${product.price}{" "}
+                  {product.priceBeforeSale && (
+                    <small className="line-through text-gray-500">
+                      ${product.priceBeforeSale}
+                    </small>
+                  )}
+                  {product.quantity > 1 && (
+                    <span className="text-xs align-sub text-(--tertiary-color)">
+                      {" "}
+                      X{product.quantity}{" "}
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -167,12 +178,16 @@ const OrderSummary = () => {
         <span className="font-bold text-2xl">${state.totalPrice}</span>
       </p>
 
-      <Link
-        href="/checkout"
-        className="block w-full rounded-sm py-3 text-center px-6 font-semibold hover:bg-blue-900 text-white bg-blue-800"
-      >
-        Checkout
-      </Link>
+      <div className="p-2.5 bg-white border border-gray-300 rounded-md text-center my-3 text-gray-500">
+        <strong>Test Card to use on the next page</strong>
+        <p className="flex flex-col">
+          <span>4111 1111 1111 1111</span>
+          <span>Expiry: 12/30</span>
+          <span>CVC: 123</span>
+        </p>
+      </div>
+
+      <CheckoutForm cart={[]} />
     </section>
   );
 };
@@ -181,7 +196,9 @@ const ClearCardButton = () => {
   const { dispatch } = useContext(CartContext) || {};
 
   const clearCard = () => {
-    if (window.confirm()) {
+    if (
+      window.confirm("Are you sure you want to remove all items in your cart?")
+    ) {
       dispatch?.({
         type: CartActionTypes.CLEAR_CART,
       });

@@ -47,6 +47,7 @@ export const addToCart = (
   return {
     ...state,
     items: [cartItem, ...(state.items || [])],
+    totalPrice: state.totalPrice + cartItem.price * cartItem.quantity,
   };
 };
 
@@ -63,9 +64,15 @@ export const updateCardItem = (
     };
   });
 
+  const totalPrice = newItems.reduce(
+    (acc, cur) => cur.price * cur.quantity + acc,
+    0,
+  );
+
   return {
     ...state,
     items: newItems,
+    totalPrice,
   };
 };
 
@@ -75,9 +82,14 @@ export const removeFromCart = (
 ) => {
   const { productId } = action;
 
+  const item = state.items.find((p) => p.product_id === productId);
+
   return {
     ...state,
     items: state.items.filter((item) => item.product_id !== productId),
+    ...(item && {
+      totalPrice: state.totalPrice - item.price * item.quantity,
+    }),
   };
 };
 

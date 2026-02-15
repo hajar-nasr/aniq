@@ -12,6 +12,13 @@ export interface Product {
   collection: string;
   created_at: string;
   images?: Record<string, ProductImage[]>;
+  availableColors: string[];
+  list_price: number;
+  discount: number | null;
+  discount_percentage: null;
+  sale_price: number;
+  sold: number;
+  stock: number;
 }
 
 export interface ProductDetailsType {
@@ -23,6 +30,12 @@ export interface ProductDetailsType {
   description: string;
   images: ProductImage[];
   availableColors: string[];
+  list_price: number;
+  discount: number | null;
+  discount_percentage: null;
+  sale_price: number;
+  sold: number;
+  stock: number;
   info: {
     title: string;
     description: string[];
@@ -38,4 +51,11 @@ export interface CartItem {
   description: string;
   quantity: number;
   size: "XS" | "S" | "M" | "L" | "XL";
+  price: number;
+  priceBeforeSale: number;
+}
+
+export interface ProductFilters {
+  categories: string[];
+  colors: string[];
 }

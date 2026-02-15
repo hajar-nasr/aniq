@@ -6,7 +6,7 @@ import GridCollection from "./components/GridCollection";
 import MoreProducts from "./components/MoreProducts";
 import HomepageHero from "./components/HomepageHero";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center space-y-15 md:space-y-20">
       <HomepageHero />

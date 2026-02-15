@@ -11,12 +11,12 @@ export async function POST(request: NextRequest) {
     if (!Array.isArray(body.cart)) throw Error("Invalid items");
 
     const session = await stripe.checkout.sessions.create({
-      line_items: body.cart.map(
-        ({ price, quantity }: { price: string; quantity: number }) => ({
-          price,
-          quantity,
-        }),
-      ),
+      line_items: [
+        {
+          price: "price_1T0gRrDsPuO6sNfUZ3VbIDDE",
+          quantity: 1,
+        },
+      ],
       mode: "payment",
       success_url: `${origin}/post-purchase?session_id={CHECKOUT_SESSION_ID}`,
     });

@@ -1,12 +1,12 @@
-// components
 import ProductList from "@/app/components/product/ProductList";
-import FiltersColumn from "@/app/components/layout/FiltersColumn";
+import getProducts from "@/app/lib/apis/get-products";
 
-const ProductListPage = () => {
+const ProductListPage = async () => {
+  const { products, allProductsColors } = await getProducts();
+
   return (
     <main className="flex">
-      <FiltersColumn />
-      <ProductList />
+      <ProductList products={products} colors={allProductsColors} />
     </main>
   );
 };

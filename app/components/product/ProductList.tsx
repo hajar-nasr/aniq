@@ -1,22 +1,57 @@
 "use client";
 
-import useProductReducer from "@/app/reducers/product/reducer";
-// components
+import { useMemo, useState } from "react";
+import { Product, ProductFilters } from "@/app/lib/types";
 import ProductItem from "./ProductItem";
+import FiltersColumn from "@/app/components/layout/FiltersColumn";
 
-const ProductList = () => {
-  const [state] = useProductReducer();
-  if (!state?.products) return null;
+const ProductList = ({
+  products,
+  colors,
+}: {
+  products: Product[];
+  colors: string[];
+}) => {
+  const [filters, setFilters] = useState<ProductFilters>({
+    categories: [],
+    colors: [],
+  });
+
+  const filteredProducts = useMemo(() => {
+    const { categories, colors } = filters;
+    if (colors.length === 0 && categories.length === 0) return products;
+
+    return products.filter((p) => {
+      const matchesColor =
+        colors.length === 0 ||
+        p.availableColors.some((c) => {
+          return colors.includes(c);
+        });
+
+      const matchesCategory =
+        categories.length === 0 || categories.includes(p.category);
+
+      return matchesCategory && matchesColor;
+    });
+  }, [filters, products]);
 
   return (
-    <ul
-      className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 flex-1"
-      aria-label="Products"
-    >
-      {state?.products.map((item) => {
-        return <ProductItem product={item} key={item.product_id} />;
-      })}
-    </ul>
+    <>
+      <FiltersColumn
+        colors={colors}
+        setFilters={setFilters}
+        filters={filters}
+      />
+
+      <ul
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 flex-1"
+        aria-label="Products"
+      >
+        {filteredProducts?.map((item) => {
+          return <ProductItem product={item} key={item.product_id} />;
+        })}
+      </ul>
+    </>
   );
 };
 

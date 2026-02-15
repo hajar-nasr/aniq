@@ -59,6 +59,8 @@ const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
       (img) => img.color === cartItem.color,
     )?.image_url;
 
+    const price = product.discount ? product.sale_price : product.list_price;
+
     // if item exists in cart, update it with the latest inputs from user
     if (itemInCart) {
       dispatch?.({
@@ -67,6 +69,8 @@ const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
         updatedFields: {
           ...cartItem,
           image_url: imageUrl || product.images[0].image_url,
+          price,
+          priceBeforeSale: product.list_price,
         },
       });
       return;
@@ -78,6 +82,8 @@ const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
       cartItem: {
         ...cartItem,
         image_url: imageUrl || product.images[0].image_url,
+        price,
+        priceBeforeSale: product.list_price,
       },
     });
   };
@@ -87,6 +93,25 @@ const ProductDetails = ({ product }: { product: ProductDetailsType }) => {
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-medium text-(--main-color)">
         {product.name}
       </h1>
+
+      <p className="text-lg font-semibold">
+        <span>
+          ${product.discount ? product.sale_price : product.list_price}{" "}
+        </span>
+
+        {product.discount && (
+          <span className="text-sm line-through text-gray-400">
+            ${product.list_price}
+          </span>
+        )}
+      </p>
+
+      {product.discount_percentage && (
+        <span className="font-bold text-sm inline-block px-3 py-0.5 bg-amber-100 border border-amber-600 rounded-4xl text-amber-600">
+          {product.discount_percentage}% OFF
+        </span>
+      )}
+
       <p className="text-base text-(--secondary-color)">
         {product.description}
       </p>

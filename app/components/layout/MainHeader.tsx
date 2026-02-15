@@ -3,7 +3,7 @@ import CartIcon from "../cart/CartIcon";
 
 const MainHeader = () => {
   return (
-    <header className="pb-12 text-4xl flex items-center justify-between">
+    <header className="pt-6 md:pt-8 pb-12 text-4xl flex items-center justify-between">
       <Link href="/">ANIQ®</Link>
       <CartIcon />
     </header>

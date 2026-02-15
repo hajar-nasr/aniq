@@ -1,11 +1,18 @@
 const getCartInitialState = () => {
+  const initialState = {
+    items: [],
+    totalPrice: 0,
+  };
+
   try {
-    return JSON.parse(localStorage.getItem("cart") || "{}");
+    if (typeof window === undefined) return initialState;
+
+    const cartInStorage = localStorage.getItem("cart");
+    if (!cartInStorage) return initialState;
+
+    return JSON.parse(cartInStorage);
   } catch {
-    return {
-      items: [],
-      totalPrice: 0,
-    };
+    return initialState;
   }
 };
 
