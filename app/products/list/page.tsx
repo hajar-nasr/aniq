@@ -5,7 +5,7 @@ const ProductListPage = async () => {
   const { products, allProductsColors } = await getProducts();
 
   return (
-    <main className="flex">
+    <main className="flex flex-col md:flex-row">
       <ProductList products={products} colors={allProductsColors} />
     </main>
   );

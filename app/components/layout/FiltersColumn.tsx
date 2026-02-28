@@ -49,7 +49,7 @@ const FiltersColumn = ({ filters, colors, setFilters }: Props) => {
   };
 
   return (
-    <aside className="md:w-60 *:border-b-2 *:border-b-gray-200">
+    <aside className="md:w-60 *:border-b-2 *:border-b-gray-200 mb-8">
       <Collapsable title="Category">
         {CATEGORIES.map((cat) => {
           return (

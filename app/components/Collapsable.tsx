@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./core/Button";
 
 type CollapsableProps = {
@@ -12,7 +12,17 @@ const Collapsable = ({
   children,
   titleClassName = "",
 }: CollapsableProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+
+  useEffect(() => {
+    const resize = () => {
+      setCollapsed(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", resize);
+    resize();
+    return () => window.removeEventListener("resize", resize);
+  }, []);
 
   return (
     <div>

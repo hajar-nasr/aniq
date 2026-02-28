@@ -45,7 +45,7 @@ const ProductList = ({
 
       {filteredProducts.length ? (
         <ul
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 flex-1"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:px-8 flex-1"
           aria-label="Products"
         >
           {filteredProducts?.map((item) => {
