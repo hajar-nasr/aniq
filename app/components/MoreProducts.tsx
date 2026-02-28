@@ -3,6 +3,8 @@ import Link from "next/link";
 import { shuffle } from "lodash";
 import getProducts from "@/app/lib/apis/get-products";
 
+export const dynamic = "force-dynamic";
+
 const MoreProducts = async ({ title }: { title: string }) => {
   const { products } = await getProducts();
 
