@@ -4,6 +4,14 @@ Aniq is a demo ecommerce storefront built with the Next.js App Router. It showca
 
 This repository implements the "Aniq" ecommerce project from [GreatFrontEnd Projects](https://www.greatfrontend.com/projects).
 
+<img width="892" height="895" alt="Screenshot 2026-02-28 at 4 37 07 PM" src="https://github.com/user-attachments/assets/00d400da-cc74-4f67-aa03-7aec2ade5583" />
+<img width="1466" height="875" alt="Screenshot 2026-02-28 at 4 38 05 PM" src="https://github.com/user-attachments/assets/e5a4c530-6e30-4785-b572-842c1df75c5f" />
+<img width="863" height="901" alt="Screenshot 2026-02-28 at 4 38 28 PM" src="https://github.com/user-attachments/assets/30af8f4b-e323-47e8-8155-56b5cd3377c7" />
+<img width="895" height="742" alt="Screenshot 2026-02-28 at 4 37 30 PM" src="https://github.com/user-attachments/assets/bc7a6637-bab9-4854-aaa4-a041cbaf584a" />
+
+
+
+
 ## Tech Stack
 
 - Next.js 16 (App Router, TypeScript)
