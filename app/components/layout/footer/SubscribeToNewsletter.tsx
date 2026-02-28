@@ -41,7 +41,7 @@ const SubscribeToNewsletter = () => {
 
         <button
           type="submit"
-          className="rounded-sm hover:bg-blue-900 text-white test-medium py-2 px-4 bg-blue-800 cursor-pointer"
+          className="rounded-sm  text-white test-medium py-2 px-4  cursor-pointer hover:underline bg-(--tertiary-color)"
         >
           Subscribe
         </button>

@@ -43,14 +43,20 @@ const ProductList = ({
         filters={filters}
       />
 
-      <ul
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 flex-1"
-        aria-label="Products"
-      >
-        {filteredProducts?.map((item) => {
-          return <ProductItem product={item} key={item.product_id} />;
-        })}
-      </ul>
+      {filteredProducts.length ? (
+        <ul
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-8 flex-1"
+          aria-label="Products"
+        >
+          {filteredProducts?.map((item) => {
+            return <ProductItem product={item} key={item.product_id} />;
+          })}
+        </ul>
+      ) : (
+        <p className="text-center w-full flex justify-center items-center text-lg text-(--tertiary-color) ">
+          <span>No items match your search.</span>
+        </p>
+      )}
     </>
   );
 };
