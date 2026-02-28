@@ -4,15 +4,20 @@ const getProducts = async (): Promise<{
   products: Product[];
   allProductsColors: string[];
 }> => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_HOSTING_URL}/api/products`,
-    );
+  const baseUrl =
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
 
-    return response.json();
-  } catch {
-    throw Error("Failed to fetch products");
+  const response = await fetch(`${baseUrl}/api/products`, {
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
   }
+
+  return response.json();
 };
 
 export default getProducts;
