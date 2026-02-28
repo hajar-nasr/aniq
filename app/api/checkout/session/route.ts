@@ -1,12 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
 import { headers } from "next/headers";
-import { stripe } from "@/app/lib/stripe";
+import Stripe from "stripe";
 
 export async function POST(request: NextRequest) {
   try {
     const headersList = await headers();
     const origin = headersList.get("origin");
     const body = await request.json();
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
     if (!Array.isArray(body.cart)) throw Error("Invalid items");
 
